@@ -1,0 +1,477 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dao.SchedulingMapper" >
+  <resultMap id="BaseResultMap" type="com.entity.Scheduling" >
+    <result column="schedulingid" property="schedulingid" jdbcType="INTEGER" />
+    <result column="projectid" property="projectid" jdbcType="INTEGER" />
+    <result column="picture" property="picture" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="stype" property="stype" jdbcType="VARCHAR" />
+    <result column="cycle" property="cycle" jdbcType="VARCHAR" />
+    <result column="requirement" property="requirement" jdbcType="VARCHAR" />
+    <result column="snumber" property="snumber" jdbcType="VARCHAR" />
+    <result column="writestatus" property="writestatus" jdbcType="VARCHAR" />
+    <result column="dayunit" property="dayunit" jdbcType="VARCHAR" />
+    <result column="dayunitreview" property="dayunitreview" jdbcType="VARCHAR" />
+    <result column="reallystart" property="reallystart" jdbcType="TIMESTAMP" />
+    <result column="reallyend" property="reallyend" jdbcType="TIMESTAMP" />
+    <result column="zbtype" property="zbtype" jdbcType="VARCHAR" />
+    <result column="buildunit" property="buildunit" jdbcType="VARCHAR" />
+    <result column="imageprogress" property="imageprogress" jdbcType="VARCHAR" />
+    <result column="question" property="question" jdbcType="VARCHAR" />
+    <result column="sendfund" property="sendfund" jdbcType="VARCHAR" />
+    <result column="finishfund" property="finishfund" jdbcType="VARCHAR" />
+    <result column="tdxfunit" property="tdxfunit" jdbcType="VARCHAR" />
+    <result column="tdstart" property="tdstart" jdbcType="TIMESTAMP" />
+    <result column="tdend" property="tdend" jdbcType="TIMESTAMP" />
+    <result column="tdstatus" property="tdstatus" jdbcType="VARCHAR" />
+    <result column="xftime" property="xftime" jdbcType="TIMESTAMP" />
+    <result column="sendunit" property="sendunit" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    schedulingid, projectid, picture, name, stype, cycle, requirement, snumber, writestatus, 
+    dayunit, dayunitreview, reallystart, reallyend, zbtype, buildunit, imageprogress, 
+    question, sendfund, finishfund, tdxfunit, tdstart, tdend, tdstatus, xftime, sendunit
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.entity.SchedulingExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from zf_scheduling
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.entity.SchedulingExample" >
+    delete from zf_scheduling
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.entity.Scheduling" >
+    insert into zf_scheduling (schedulingid, projectid, picture, 
+      name, stype, cycle, 
+      requirement, snumber, writestatus, 
+      dayunit, dayunitreview, reallystart, 
+      reallyend, zbtype, buildunit, 
+      imageprogress, question, sendfund, 
+      finishfund, tdxfunit, tdstart, 
+      tdend, tdstatus, xftime, 
+      sendunit)
+    values (#{schedulingid,jdbcType=INTEGER}, #{projectid,jdbcType=INTEGER}, #{picture,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{stype,jdbcType=VARCHAR}, #{cycle,jdbcType=VARCHAR}, 
+      #{requirement,jdbcType=VARCHAR}, #{snumber,jdbcType=VARCHAR}, #{writestatus,jdbcType=VARCHAR}, 
+      #{dayunit,jdbcType=VARCHAR}, #{dayunitreview,jdbcType=VARCHAR}, #{reallystart,jdbcType=TIMESTAMP}, 
+      #{reallyend,jdbcType=TIMESTAMP}, #{zbtype,jdbcType=VARCHAR}, #{buildunit,jdbcType=VARCHAR}, 
+      #{imageprogress,jdbcType=VARCHAR}, #{question,jdbcType=VARCHAR}, #{sendfund,jdbcType=VARCHAR}, 
+      #{finishfund,jdbcType=VARCHAR}, #{tdxfunit,jdbcType=VARCHAR}, #{tdstart,jdbcType=TIMESTAMP}, 
+      #{tdend,jdbcType=TIMESTAMP}, #{tdstatus,jdbcType=VARCHAR}, #{xftime,jdbcType=TIMESTAMP}, 
+      #{sendunit,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.entity.Scheduling" >
+    insert into zf_scheduling
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="schedulingid != null" >
+        schedulingid,
+      </if>
+      <if test="projectid != null" >
+        projectid,
+      </if>
+      <if test="picture != null" >
+        picture,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="stype != null" >
+        stype,
+      </if>
+      <if test="cycle != null" >
+        cycle,
+      </if>
+      <if test="requirement != null" >
+        requirement,
+      </if>
+      <if test="snumber != null" >
+        snumber,
+      </if>
+      <if test="writestatus != null" >
+        writestatus,
+      </if>
+      <if test="dayunit != null" >
+        dayunit,
+      </if>
+      <if test="dayunitreview != null" >
+        dayunitreview,
+      </if>
+      <if test="reallystart != null" >
+        reallystart,
+      </if>
+      <if test="reallyend != null" >
+        reallyend,
+      </if>
+      <if test="zbtype != null" >
+        zbtype,
+      </if>
+      <if test="buildunit != null" >
+        buildunit,
+      </if>
+      <if test="imageprogress != null" >
+        imageprogress,
+      </if>
+      <if test="question != null" >
+        question,
+      </if>
+      <if test="sendfund != null" >
+        sendfund,
+      </if>
+      <if test="finishfund != null" >
+        finishfund,
+      </if>
+      <if test="tdxfunit != null" >
+        tdxfunit,
+      </if>
+      <if test="tdstart != null" >
+        tdstart,
+      </if>
+      <if test="tdend != null" >
+        tdend,
+      </if>
+      <if test="tdstatus != null" >
+        tdstatus,
+      </if>
+      <if test="xftime != null" >
+        xftime,
+      </if>
+      <if test="sendunit != null" >
+        sendunit,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="schedulingid != null" >
+        #{schedulingid,jdbcType=INTEGER},
+      </if>
+      <if test="projectid != null" >
+        #{projectid,jdbcType=INTEGER},
+      </if>
+      <if test="picture != null" >
+        #{picture,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="stype != null" >
+        #{stype,jdbcType=VARCHAR},
+      </if>
+      <if test="cycle != null" >
+        #{cycle,jdbcType=VARCHAR},
+      </if>
+      <if test="requirement != null" >
+        #{requirement,jdbcType=VARCHAR},
+      </if>
+      <if test="snumber != null" >
+        #{snumber,jdbcType=VARCHAR},
+      </if>
+      <if test="writestatus != null" >
+        #{writestatus,jdbcType=VARCHAR},
+      </if>
+      <if test="dayunit != null" >
+        #{dayunit,jdbcType=VARCHAR},
+      </if>
+      <if test="dayunitreview != null" >
+        #{dayunitreview,jdbcType=VARCHAR},
+      </if>
+      <if test="reallystart != null" >
+        #{reallystart,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reallyend != null" >
+        #{reallyend,jdbcType=TIMESTAMP},
+      </if>
+      <if test="zbtype != null" >
+        #{zbtype,jdbcType=VARCHAR},
+      </if>
+      <if test="buildunit != null" >
+        #{buildunit,jdbcType=VARCHAR},
+      </if>
+      <if test="imageprogress != null" >
+        #{imageprogress,jdbcType=VARCHAR},
+      </if>
+      <if test="question != null" >
+        #{question,jdbcType=VARCHAR},
+      </if>
+      <if test="sendfund != null" >
+        #{sendfund,jdbcType=VARCHAR},
+      </if>
+      <if test="finishfund != null" >
+        #{finishfund,jdbcType=VARCHAR},
+      </if>
+      <if test="tdxfunit != null" >
+        #{tdxfunit,jdbcType=VARCHAR},
+      </if>
+      <if test="tdstart != null" >
+        #{tdstart,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tdend != null" >
+        #{tdend,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tdstatus != null" >
+        #{tdstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="xftime != null" >
+        #{xftime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sendunit != null" >
+        #{sendunit,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.entity.SchedulingExample" resultType="java.lang.Integer" >
+    select count(*) from zf_scheduling
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update zf_scheduling
+    <set >
+      <if test="record.schedulingid != null" >
+        schedulingid = #{record.schedulingid,jdbcType=INTEGER},
+      </if>
+      <if test="record.projectid != null" >
+        projectid = #{record.projectid,jdbcType=INTEGER},
+      </if>
+      <if test="record.picture != null" >
+        picture = #{record.picture,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stype != null" >
+        stype = #{record.stype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cycle != null" >
+        cycle = #{record.cycle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.requirement != null" >
+        requirement = #{record.requirement,jdbcType=VARCHAR},
+      </if>
+      <if test="record.snumber != null" >
+        snumber = #{record.snumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.writestatus != null" >
+        writestatus = #{record.writestatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dayunit != null" >
+        dayunit = #{record.dayunit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dayunitreview != null" >
+        dayunitreview = #{record.dayunitreview,jdbcType=VARCHAR},
+      </if>
+      <if test="record.reallystart != null" >
+        reallystart = #{record.reallystart,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.reallyend != null" >
+        reallyend = #{record.reallyend,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.zbtype != null" >
+        zbtype = #{record.zbtype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.buildunit != null" >
+        buildunit = #{record.buildunit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.imageprogress != null" >
+        imageprogress = #{record.imageprogress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.question != null" >
+        question = #{record.question,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sendfund != null" >
+        sendfund = #{record.sendfund,jdbcType=VARCHAR},
+      </if>
+      <if test="record.finishfund != null" >
+        finishfund = #{record.finishfund,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tdxfunit != null" >
+        tdxfunit = #{record.tdxfunit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tdstart != null" >
+        tdstart = #{record.tdstart,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.tdend != null" >
+        tdend = #{record.tdend,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.tdstatus != null" >
+        tdstatus = #{record.tdstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xftime != null" >
+        xftime = #{record.xftime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.sendunit != null" >
+        sendunit = #{record.sendunit,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update zf_scheduling
+    set schedulingid = #{record.schedulingid,jdbcType=INTEGER},
+      projectid = #{record.projectid,jdbcType=INTEGER},
+      picture = #{record.picture,jdbcType=VARCHAR},
+      name = #{record.name,jdbcType=VARCHAR},
+      stype = #{record.stype,jdbcType=VARCHAR},
+      cycle = #{record.cycle,jdbcType=VARCHAR},
+      requirement = #{record.requirement,jdbcType=VARCHAR},
+      snumber = #{record.snumber,jdbcType=VARCHAR},
+      writestatus = #{record.writestatus,jdbcType=VARCHAR},
+      dayunit = #{record.dayunit,jdbcType=VARCHAR},
+      dayunitreview = #{record.dayunitreview,jdbcType=VARCHAR},
+      reallystart = #{record.reallystart,jdbcType=TIMESTAMP},
+      reallyend = #{record.reallyend,jdbcType=TIMESTAMP},
+      zbtype = #{record.zbtype,jdbcType=VARCHAR},
+      buildunit = #{record.buildunit,jdbcType=VARCHAR},
+      imageprogress = #{record.imageprogress,jdbcType=VARCHAR},
+      question = #{record.question,jdbcType=VARCHAR},
+      sendfund = #{record.sendfund,jdbcType=VARCHAR},
+      finishfund = #{record.finishfund,jdbcType=VARCHAR},
+      tdxfunit = #{record.tdxfunit,jdbcType=VARCHAR},
+      tdstart = #{record.tdstart,jdbcType=TIMESTAMP},
+      tdend = #{record.tdend,jdbcType=TIMESTAMP},
+      tdstatus = #{record.tdstatus,jdbcType=VARCHAR},
+      xftime = #{record.xftime,jdbcType=TIMESTAMP},
+      sendunit = #{record.sendunit,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from zf_scheduling
+    where schedulingid = #{schedulingid,jdbcType=INTEGER}
+  </delete>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from zf_scheduling
+    where schedulingid = #{schedulingid,jdbcType=INTEGER}
+  </select>
+  <select id="findByprojectid" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from zf_scheduling
+    where projectid = #{projectid,jdbcType=INTEGER}
+  </select>
+  <select id="findByname"  resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from zf_scheduling
+    where name = #{name,jdbcType=VARCHAR}
+  </select>
+  <select id="findBytdstatus"  resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from zf_scheduling
+    where tdstatus = #{tdstatus,jdbcType=VARCHAR}
+  </select>
+  <select id="findBytdxfunitandtdstatus" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from zf_scheduling where  tdxfunit  like "%"#{tdxfunit}"%" and tdstatus= #{tdstatus,jdbcType=VARCHAR}
+  </select>
+  <select id="findBytdxfunit" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from zf_scheduling where  tdxfunit  like "%"#{tdxfunit}"%"
+  </select>
+  <update id="updateByPrimaryKey" parameterType="com.entity.Project">
+    update zf_scheduling
+    set projectid = #{projectid,jdbcType=INTEGER},
+      picture = #{picture,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      stype = #{stype,jdbcType=VARCHAR},
+      cycle = #{cycle,jdbcType=VARCHAR},
+      requirement = #{requirement,jdbcType=VARCHAR},
+      snumber = #{snumber,jdbcType=VARCHAR},
+      writestatus = #{writestatus,jdbcType=VARCHAR},
+      dayunit = #{dayunit,jdbcType=VARCHAR},
+      dayunitreview = #{dayunitreview,jdbcType=VARCHAR},
+      reallystart = #{reallystart,jdbcType=TIMESTAMP},
+      reallyend = #{reallyend,jdbcType=TIMESTAMP},
+      zbtype = #{zbtype,jdbcType=VARCHAR},
+      buildunit = #{buildunit,jdbcType=VARCHAR},
+      imageprogress = #{imageprogress,jdbcType=VARCHAR},
+      question = #{question,jdbcType=VARCHAR},
+      sendfund = #{sendfund,jdbcType=VARCHAR},
+      finishfund = #{finishfund,jdbcType=VARCHAR},
+      tdxfunit = #{tdxfunit,jdbcType=VARCHAR},
+      tdstart = #{tdstart,jdbcType=TIMESTAMP},
+      tdend = #{tdend,jdbcType=TIMESTAMP},
+      tdstatus = #{tdstatus,jdbcType=VARCHAR},
+      xftime = #{xftime,jdbcType=TIMESTAMP},
+      sendunit = #{sendunit,jdbcType=VARCHAR}
+    where schedulingid = #{schedulingid,jdbcType=INTEGER}
+  </update>
+</mapper>

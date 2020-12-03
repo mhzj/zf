@@ -1,0 +1,419 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dao.ReviewMapper" >
+  <resultMap id="BaseResultMap" type="com.entity.Review" >
+    <result column="id" property="id" jdbcType="INTEGER" />
+    <result column="projectid" property="projectid" jdbcType="INTEGER" />
+    <result column="userid" property="userid" jdbcType="INTEGER" />
+    <result column="shoption" property="shoption" jdbcType="VARCHAR" />
+    <result column="rate" property="rate" jdbcType="VARCHAR" />
+    <result column="createtime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="institution" property="institution" jdbcType="VARCHAR" />
+    <result column="projectname" property="projectname" jdbcType="VARCHAR" />
+    <result column="projectype" property="projectype" jdbcType="VARCHAR" />
+    <result column="site" property="site" jdbcType="VARCHAR" />
+    <result column="finish" property="finish" jdbcType="VARCHAR" />
+    <result column="gbindustry" property="gbindustry" jdbcType="VARCHAR" />
+    <result column="industry" property="industry" jdbcType="VARCHAR" />
+    <result column="fund" property="fund" jdbcType="VARCHAR" />
+    <result column="starttime" property="starttime" jdbcType="TIMESTAMP" />
+    <result column="endtime" property="endtime" jdbcType="TIMESTAMP" />
+    <result column="sendtime" property="sendtime" jdbcType="TIMESTAMP" />
+    <result column="fromsite" property="fromsite" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, projectid, userid, shoption, rate, createtime, institution, projectname, projectype, 
+    site, finish, gbindustry, industry, fund, starttime, endtime, sendtime, fromsite, 
+    status
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.entity.ReviewExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from zf_review
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.entity.ReviewExample" >
+    delete from zf_review
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.entity.Review" >
+    insert into zf_review (id, projectid, userid, 
+      shoption, rate, createtime, 
+      institution, projectname, projectype, 
+      site, finish, gbindustry, 
+      industry, fund, starttime, 
+      endtime, sendtime, fromsite, 
+      status)
+    values (#{id,jdbcType=INTEGER}, #{projectid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, 
+      #{shoption,jdbcType=VARCHAR}, #{rate,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, 
+      #{institution,jdbcType=VARCHAR}, #{projectname,jdbcType=VARCHAR}, #{projectype,jdbcType=VARCHAR}, 
+      #{site,jdbcType=VARCHAR}, #{finish,jdbcType=VARCHAR}, #{gbindustry,jdbcType=VARCHAR}, 
+      #{industry,jdbcType=VARCHAR}, #{fund,jdbcType=VARCHAR}, #{starttime,jdbcType=TIMESTAMP}, 
+      #{endtime,jdbcType=TIMESTAMP}, #{sendtime,jdbcType=TIMESTAMP}, #{fromsite,jdbcType=VARCHAR}, 
+      #{status,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.entity.Review" >
+    insert into zf_review
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="projectid != null" >
+        projectid,
+      </if>
+      <if test="userid != null" >
+        userid,
+      </if>
+      <if test="shoption != null" >
+        shoption,
+      </if>
+      <if test="rate != null" >
+        rate,
+      </if>
+      <if test="createtime != null" >
+        createtime,
+      </if>
+      <if test="institution != null" >
+        institution,
+      </if>
+      <if test="projectname != null" >
+        projectname,
+      </if>
+      <if test="projectype != null" >
+        projectype,
+      </if>
+      <if test="site != null" >
+        site,
+      </if>
+      <if test="finish != null" >
+        finish,
+      </if>
+      <if test="gbindustry != null" >
+        gbindustry,
+      </if>
+      <if test="industry != null" >
+        industry,
+      </if>
+      <if test="fund != null" >
+        fund,
+      </if>
+      <if test="starttime != null" >
+        starttime,
+      </if>
+      <if test="endtime != null" >
+        endtime,
+      </if>
+      <if test="sendtime != null" >
+        sendtime,
+      </if>
+      <if test="fromsite != null" >
+        fromsite,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="projectid != null" >
+        #{projectid,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="shoption != null" >
+        #{shoption,jdbcType=VARCHAR},
+      </if>
+      <if test="rate != null" >
+        #{rate,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="institution != null" >
+        #{institution,jdbcType=VARCHAR},
+      </if>
+      <if test="projectname != null" >
+        #{projectname,jdbcType=VARCHAR},
+      </if>
+      <if test="projectype != null" >
+        #{projectype,jdbcType=VARCHAR},
+      </if>
+      <if test="site != null" >
+        #{site,jdbcType=VARCHAR},
+      </if>
+      <if test="finish != null" >
+        #{finish,jdbcType=VARCHAR},
+      </if>
+      <if test="gbindustry != null" >
+        #{gbindustry,jdbcType=VARCHAR},
+      </if>
+      <if test="industry != null" >
+        #{industry,jdbcType=VARCHAR},
+      </if>
+      <if test="fund != null" >
+        #{fund,jdbcType=VARCHAR},
+      </if>
+      <if test="starttime != null" >
+        #{starttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endtime != null" >
+        #{endtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sendtime != null" >
+        #{sendtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fromsite != null" >
+        #{fromsite,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.entity.ReviewExample" resultType="java.lang.Integer" >
+    select count(*) from zf_review
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update zf_review
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.projectid != null" >
+        projectid = #{record.projectid,jdbcType=INTEGER},
+      </if>
+      <if test="record.userid != null" >
+        userid = #{record.userid,jdbcType=INTEGER},
+      </if>
+      <if test="record.shoption != null" >
+        shoption = #{record.shoption,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rate != null" >
+        rate = #{record.rate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createtime != null" >
+        createtime = #{record.createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.institution != null" >
+        institution = #{record.institution,jdbcType=VARCHAR},
+      </if>
+      <if test="record.projectname != null" >
+        projectname = #{record.projectname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.projectype != null" >
+        projectype = #{record.projectype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.site != null" >
+        site = #{record.site,jdbcType=VARCHAR},
+      </if>
+      <if test="record.finish != null" >
+        finish = #{record.finish,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gbindustry != null" >
+        gbindustry = #{record.gbindustry,jdbcType=VARCHAR},
+      </if>
+      <if test="record.industry != null" >
+        industry = #{record.industry,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fund != null" >
+        fund = #{record.fund,jdbcType=VARCHAR},
+      </if>
+      <if test="record.starttime != null" >
+        starttime = #{record.starttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.endtime != null" >
+        endtime = #{record.endtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.sendtime != null" >
+        sendtime = #{record.sendtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.fromsite != null" >
+        fromsite = #{record.fromsite,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update zf_review
+    set id = #{record.id,jdbcType=INTEGER},
+      projectid = #{record.projectid,jdbcType=INTEGER},
+      userid = #{record.userid,jdbcType=INTEGER},
+      shoption = #{record.shoption,jdbcType=VARCHAR},
+      rate = #{record.rate,jdbcType=VARCHAR},
+      createtime = #{record.createtime,jdbcType=TIMESTAMP},
+      institution = #{record.institution,jdbcType=VARCHAR},
+      projectname = #{record.projectname,jdbcType=VARCHAR},
+      projectype = #{record.projectype,jdbcType=VARCHAR},
+      site = #{record.site,jdbcType=VARCHAR},
+      finish = #{record.finish,jdbcType=VARCHAR},
+      gbindustry = #{record.gbindustry,jdbcType=VARCHAR},
+      industry = #{record.industry,jdbcType=VARCHAR},
+      fund = #{record.fund,jdbcType=VARCHAR},
+      starttime = #{record.starttime,jdbcType=TIMESTAMP},
+      endtime = #{record.endtime,jdbcType=TIMESTAMP},
+      sendtime = #{record.sendtime,jdbcType=TIMESTAMP},
+      fromsite = #{record.fromsite,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <select id="findByshoption" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from zf_review where shoption = #{shoption,jdbcType=VARCHAR} and institution like "%"#{institution}"%"
+  </select>
+  <select id="findBywaitSite" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from zf_review where site like "%"#{arg0}"%" and shoption='待审核'
+  </select>
+  <select id="findBywaitType" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from zf_review where projectype like "%"#{arg0}"%" and shoption='待审核'
+  </select>
+  <select id="findBywaitTypeandSite" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from zf_review where projectype like "%"#{arg0}"%"  and site like "%"#{arg1}"%"   and shoption='待审核'
+  </select>
+  <select id="findBywaitName" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from zf_review where projectname like "%"#{arg0}"%"  and shoption='待审核'
+  </select>
+  <select id="findBywaitSiteandName" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from zf_review where projectname like "%"#{arg0}"%"  and site like "%"#{arg1}"%" and shoption='待审核'
+  </select>
+  <select id="findBywaitTypeandName" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from zf_review where projectname like "%"#{arg0}"%"  and projectype like "%"#{arg1}"%" and shoption='待审核'
+  </select>
+  <select id="findBywaitNameTypeandSite" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from zf_review where projectname like "%"#{arg0}"%"  and projectype like "%"#{arg1}"%"  and site like "%"#{arg2}"%" and shoption='待审核'
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from zf_review
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <update id="updateByPrimaryKey" parameterType="com.entity.Review">
+    update zf_review
+    set  projectid = #{projectid,jdbcType=INTEGER},
+      userid = #{userid,jdbcType=INTEGER},
+      shoption = #{shoption,jdbcType=VARCHAR},
+      rate = #{rate,jdbcType=VARCHAR},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      institution = #{institution,jdbcType=VARCHAR},
+      projectname = #{projectname,jdbcType=VARCHAR},
+      projectype = #{projectype,jdbcType=VARCHAR},
+      site = #{site,jdbcType=VARCHAR},
+      finish = #{finish,jdbcType=VARCHAR},
+      gbindustry = #{gbindustry,jdbcType=VARCHAR},
+      industry = #{industry,jdbcType=VARCHAR},
+      fund = #{fund,jdbcType=VARCHAR},
+      starttime = #{starttime,jdbcType=TIMESTAMP},
+      endtime = #{endtime,jdbcType=TIMESTAMP},
+      sendtime = #{sendtime,jdbcType=TIMESTAMP},
+      fromsite = #{fromsite,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from zf_review
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <select id="selectByprojectid" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from zf_review
+    where  projectid = #{projectid,jdbcType=INTEGER}
+  </select>
+</mapper>

@@ -1,0 +1,458 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dao.YearplanMapper" >
+  <resultMap id="BaseResultMap" type="com.entity.Yearplan" >
+    <result column="yearplanid" property="yearplanid" jdbcType="INTEGER" />
+    <result column="projectid" property="projectid" jdbcType="INTEGER" />
+    <result column="fromproject" property="fromproject" jdbcType="VARCHAR" />
+    <result column="bsunit" property="bsunit" jdbcType="VARCHAR" />
+    <result column="receiveunit" property="receiveunit" jdbcType="VARCHAR" />
+    <result column="projectname" property="projectname" jdbcType="VARCHAR" />
+    <result column="projecttype" property="projecttype" jdbcType="VARCHAR" />
+    <result column="site" property="site" jdbcType="VARCHAR" />
+    <result column="gbindustry" property="gbindustry" jdbcType="VARCHAR" />
+    <result column="industry" property="industry" jdbcType="VARCHAR" />
+    <result column="investment" property="investment" jdbcType="VARCHAR" />
+    <result column="xdfundyear" property="xdfundyear" jdbcType="VARCHAR" />
+    <result column="thisfund" property="thisfund" jdbcType="VARCHAR" />
+    <result column="starttime" property="starttime" jdbcType="TIMESTAMP" />
+    <result column="endtime" property="endtime" jdbcType="TIMESTAMP" />
+    <result column="plantime" property="plantime" jdbcType="TIMESTAMP" />
+    <result column="sendstatus" property="sendstatus" jdbcType="VARCHAR" />
+    <result column="sendtime" property="sendtime" jdbcType="TIMESTAMP" />
+    <result column="applyyear" property="applyyear" jdbcType="VARCHAR" />
+    <result column="planstatus" property="planstatus" jdbcType="VARCHAR" />
+    <result column="updatetime" property="updatetime" jdbcType="TIMESTAMP" />
+    <result column="bsnumber" property="bsnumber" jdbcType="VARCHAR" />
+    <result column="fundnumber" property="fundnumber" jdbcType="VARCHAR" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    yearplanid, projectid, fromproject, bsunit, receiveunit, projectname, projecttype,
+    site, gbindustry, industry, investment, xdfundyear, thisfund, starttime, endtime,
+    plantime, sendstatus, sendtime, applyyear, planstatus, updatetime, bsnumber, fundnumber,
+    title
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.entity.YearplanExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from zf_yearplan
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.entity.YearplanExample" >
+    delete from zf_yearplan
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.entity.Yearplan" >
+    insert into zf_yearplan (yearplanid, projectid, fromproject,
+      bsunit, receiveunit, projectname,
+      projecttype, site, gbindustry,
+      industry, investment, xdfundyear,
+      thisfund, starttime, endtime,
+      plantime, sendstatus, sendtime,
+      applyyear, planstatus, updatetime,
+      bsnumber, fundnumber, title
+      )
+    values (#{yearplanid,jdbcType=INTEGER}, #{projectid,jdbcType=INTEGER}, #{fromproject,jdbcType=VARCHAR},
+      #{bsunit,jdbcType=VARCHAR}, #{receiveunit,jdbcType=VARCHAR}, #{projectname,jdbcType=VARCHAR},
+      #{projecttype,jdbcType=VARCHAR}, #{site,jdbcType=VARCHAR}, #{gbindustry,jdbcType=VARCHAR},
+      #{industry,jdbcType=VARCHAR}, #{investment,jdbcType=VARCHAR}, #{xdfundyear,jdbcType=VARCHAR},
+      #{thisfund,jdbcType=VARCHAR}, #{starttime,jdbcType=TIMESTAMP}, #{endtime,jdbcType=TIMESTAMP},
+      #{plantime,jdbcType=TIMESTAMP}, #{sendstatus,jdbcType=VARCHAR}, #{sendtime,jdbcType=TIMESTAMP},
+      #{applyyear,jdbcType=VARCHAR}, #{planstatus,jdbcType=VARCHAR}, #{updatetime,jdbcType=TIMESTAMP},
+      #{bsnumber,jdbcType=VARCHAR}, #{fundnumber,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.entity.Yearplan" >
+    insert into zf_yearplan
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="yearplanid != null" >
+        yearplanid,
+      </if>
+      <if test="projectid != null" >
+        projectid,
+      </if>
+      <if test="fromproject != null" >
+        fromproject,
+      </if>
+      <if test="bsunit != null" >
+        bsunit,
+      </if>
+      <if test="receiveunit != null" >
+        receiveunit,
+      </if>
+      <if test="projectname != null" >
+        projectname,
+      </if>
+      <if test="projecttype != null" >
+        projecttype,
+      </if>
+      <if test="site != null" >
+        site,
+      </if>
+      <if test="gbindustry != null" >
+        gbindustry,
+      </if>
+      <if test="industry != null" >
+        industry,
+      </if>
+      <if test="investment != null" >
+        investment,
+      </if>
+      <if test="xdfundyear != null" >
+        xdfundyear,
+      </if>
+      <if test="thisfund != null" >
+        thisfund,
+      </if>
+      <if test="starttime != null" >
+        starttime,
+      </if>
+      <if test="endtime != null" >
+        endtime,
+      </if>
+      <if test="plantime != null" >
+        plantime,
+      </if>
+      <if test="sendstatus != null" >
+        sendstatus,
+      </if>
+      <if test="sendtime != null" >
+        sendtime,
+      </if>
+      <if test="applyyear != null" >
+        applyyear,
+      </if>
+      <if test="planstatus != null" >
+        planstatus,
+      </if>
+      <if test="updatetime != null" >
+        updatetime,
+      </if>
+      <if test="bsnumber != null" >
+        bsnumber,
+      </if>
+      <if test="fundnumber != null" >
+        fundnumber,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="yearplanid != null" >
+        #{yearplanid,jdbcType=INTEGER},
+      </if>
+      <if test="projectid != null" >
+        #{projectid,jdbcType=INTEGER},
+      </if>
+      <if test="fromproject != null" >
+        #{fromproject,jdbcType=VARCHAR},
+      </if>
+      <if test="bsunit != null" >
+        #{bsunit,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveunit != null" >
+        #{receiveunit,jdbcType=VARCHAR},
+      </if>
+      <if test="projectname != null" >
+        #{projectname,jdbcType=VARCHAR},
+      </if>
+      <if test="projecttype != null" >
+        #{projecttype,jdbcType=VARCHAR},
+      </if>
+      <if test="site != null" >
+        #{site,jdbcType=VARCHAR},
+      </if>
+      <if test="gbindustry != null" >
+        #{gbindustry,jdbcType=VARCHAR},
+      </if>
+      <if test="industry != null" >
+        #{industry,jdbcType=VARCHAR},
+      </if>
+      <if test="investment != null" >
+        #{investment,jdbcType=VARCHAR},
+      </if>
+      <if test="xdfundyear != null" >
+        #{xdfundyear,jdbcType=VARCHAR},
+      </if>
+      <if test="thisfund != null" >
+        #{thisfund,jdbcType=VARCHAR},
+      </if>
+      <if test="starttime != null" >
+        #{starttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endtime != null" >
+        #{endtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="plantime != null" >
+        #{plantime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sendstatus != null" >
+        #{sendstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="sendtime != null" >
+        #{sendtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="applyyear != null" >
+        #{applyyear,jdbcType=VARCHAR},
+      </if>
+      <if test="planstatus != null" >
+        #{planstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bsnumber != null" >
+        #{bsnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="fundnumber != null" >
+        #{fundnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.entity.YearplanExample" resultType="java.lang.Integer" >
+    select count(*) from zf_yearplan
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update zf_yearplan
+    <set >
+      <if test="record.yearplanid != null" >
+        yearplanid = #{record.yearplanid,jdbcType=INTEGER},
+      </if>
+      <if test="record.projectid != null" >
+        projectid = #{record.projectid,jdbcType=INTEGER},
+      </if>
+      <if test="record.fromproject != null" >
+        fromproject = #{record.fromproject,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bsunit != null" >
+        bsunit = #{record.bsunit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.receiveunit != null" >
+        receiveunit = #{record.receiveunit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.projectname != null" >
+        projectname = #{record.projectname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.projecttype != null" >
+        projecttype = #{record.projecttype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.site != null" >
+        site = #{record.site,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gbindustry != null" >
+        gbindustry = #{record.gbindustry,jdbcType=VARCHAR},
+      </if>
+      <if test="record.industry != null" >
+        industry = #{record.industry,jdbcType=VARCHAR},
+      </if>
+      <if test="record.investment != null" >
+        investment = #{record.investment,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xdfundyear != null" >
+        xdfundyear = #{record.xdfundyear,jdbcType=VARCHAR},
+      </if>
+      <if test="record.thisfund != null" >
+        thisfund = #{record.thisfund,jdbcType=VARCHAR},
+      </if>
+      <if test="record.starttime != null" >
+        starttime = #{record.starttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.endtime != null" >
+        endtime = #{record.endtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.plantime != null" >
+        plantime = #{record.plantime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.sendstatus != null" >
+        sendstatus = #{record.sendstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sendtime != null" >
+        sendtime = #{record.sendtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.applyyear != null" >
+        applyyear = #{record.applyyear,jdbcType=VARCHAR},
+      </if>
+      <if test="record.planstatus != null" >
+        planstatus = #{record.planstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updatetime != null" >
+        updatetime = #{record.updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.bsnumber != null" >
+        bsnumber = #{record.bsnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fundnumber != null" >
+        fundnumber = #{record.fundnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.title != null" >
+        title = #{record.title,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update zf_yearplan
+    set yearplanid = #{record.yearplanid,jdbcType=INTEGER},
+    projectid = #{record.projectid,jdbcType=INTEGER},
+    fromproject = #{record.fromproject,jdbcType=VARCHAR},
+    bsunit = #{record.bsunit,jdbcType=VARCHAR},
+    receiveunit = #{record.receiveunit,jdbcType=VARCHAR},
+    projectname = #{record.projectname,jdbcType=VARCHAR},
+    projecttype = #{record.projecttype,jdbcType=VARCHAR},
+    site = #{record.site,jdbcType=VARCHAR},
+    gbindustry = #{record.gbindustry,jdbcType=VARCHAR},
+    industry = #{record.industry,jdbcType=VARCHAR},
+    investment = #{record.investment,jdbcType=VARCHAR},
+    xdfundyear = #{record.xdfundyear,jdbcType=VARCHAR},
+    thisfund = #{record.thisfund,jdbcType=VARCHAR},
+    starttime = #{record.starttime,jdbcType=TIMESTAMP},
+    endtime = #{record.endtime,jdbcType=TIMESTAMP},
+    plantime = #{record.plantime,jdbcType=TIMESTAMP},
+    sendstatus = #{record.sendstatus,jdbcType=VARCHAR},
+    sendtime = #{record.sendtime,jdbcType=TIMESTAMP},
+    applyyear = #{record.applyyear,jdbcType=VARCHAR},
+    planstatus = #{record.planstatus,jdbcType=VARCHAR},
+    updatetime = #{record.updatetime,jdbcType=TIMESTAMP},
+    bsnumber = #{record.bsnumber,jdbcType=VARCHAR},
+    fundnumber = #{record.fundnumber,jdbcType=VARCHAR},
+    title = #{record.title,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from zf_yearplan
+    where yearplanid = #{yearplanid,jdbcType=INTEGER}
+  </delete>
+  <update id="updateByPrimaryKey" parameterType="com.entity.Yearplan">
+    update zf_yearplan
+    set projectid = #{projectid,jdbcType=INTEGER},
+    fromproject = #{fromproject,jdbcType=VARCHAR},
+    bsunit = #{bsunit,jdbcType=VARCHAR},
+    receiveunit = #{receiveunit,jdbcType=VARCHAR},
+    projectname = #{projectname,jdbcType=VARCHAR},
+    projecttype = #{projecttype,jdbcType=VARCHAR},
+    site = #{site,jdbcType=VARCHAR},
+    gbindustry = #{gbindustry,jdbcType=VARCHAR},
+    industry = #{industry,jdbcType=VARCHAR},
+    investment = #{investment,jdbcType=VARCHAR},
+    xdfundyear = #{xdfundyear,jdbcType=VARCHAR},
+    thisfund = #{thisfund,jdbcType=VARCHAR},
+    starttime = #{starttime,jdbcType=TIMESTAMP},
+    endtime = #{endtime,jdbcType=TIMESTAMP},
+    plantime = #{plantime,jdbcType=TIMESTAMP},
+    sendstatus = #{sendstatus,jdbcType=VARCHAR},
+    sendtime = #{sendtime,jdbcType=TIMESTAMP},
+    applyyear = #{applyyear,jdbcType=VARCHAR},
+    planstatus = #{planstatus,jdbcType=VARCHAR},
+    updatetime = #{updatetime,jdbcType=TIMESTAMP},
+    bsnumber = #{bsnumber,jdbcType=VARCHAR},
+    fundnumber = #{fundnumber,jdbcType=VARCHAR},
+    title = #{title,jdbcType=VARCHAR}
+    where yearplanid = #{yearplanid,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from zf_yearplan
+    where yearplanid = #{yearplanid,jdbcType=INTEGER}
+  </select>
+  <select id="findByplanstatusandreceiveunit" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from zf_yearplan where  planstatus like "%"#{arg0}"%" and  receiveunit  like "%"#{arg1}"%"
+  </select>
+  <select id="findByreceiveunit" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from zf_yearplan where  receiveunit  like "%"#{receiveunit}"%" and (planstatus='待下达' or planstatus='已下达')
+  </select>
+  <select id="findBysendstatusandreceiveunit" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from zf_yearplan where   receiveunit  like "%"#{receiveunit}"%" and (sendstatus='未报送' or sendstatus='已报送')
+  </select>
+  <select id="findyearByplanstatusreceiveunit" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from zf_yearplan where receiveunit like  "%"#{receiveunit}"%" and (planstatus='已报送' or planstatus='仅纳入(未报送)')
+  </select>
+</mapper>

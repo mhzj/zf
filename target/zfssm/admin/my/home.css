@@ -1,0 +1,442 @@
+
+.top{
+    height: 120px;
+
+}
+.top-bg h1{
+    color: black;
+    text-align: center;
+    padding-top: 40px;
+}
+.top-bg{
+    height: 120px;
+    width: 100%;
+    position: relative;
+    background-position: center center;
+    background-size: cover;
+}
+#topbg{
+    background-image: url("http://localhost:8888/zf/admin/images/top.jpg");
+}
+
+.navbar{
+    width: 100%;
+    height: 50px;
+    background: #0f66bd;
+}
+.navbar ul{
+    list-style: none;
+}
+.navbar ul li{
+    float: left;
+    width: 150px;
+    height: 50px;
+    font-size: 1.2em;
+    text-align: center;
+    line-height: 50px;
+}
+.navbar ul li:hover{
+    background:deepskyblue ;
+}
+.navbar ul li a{
+    text-decoration: none;
+    color:white;
+}
+.welcome{
+    height: 20px;
+    margin-top: -20px;
+    background: lightskyblue;
+}
+.welcome p{
+    float: left;
+    margin-left: 450px;
+}
+
+.row .text{
+    height: 40px;
+    width: 200px;
+    background: deepskyblue;
+}
+.row p{
+    text-align: center;
+    font-size: 20px;
+    color: white;
+    line-height: 40px;
+}
+
+.row .col-md-3{
+    margin-top: 30px;
+}
+.form-login input[type="text"], .form-login input[type="password"]{
+    margin-bottom: 20px;
+}
+.form-login .login  {
+
+    background: dodgerblue;
+    width:260px;
+    height: 30px;
+
+}
+.form-login .login a{
+    font-size: 20px;
+    color: white;
+    margin-left: 110px;
+    text-decoration: none;
+
+}
+.form-login .right{
+    float: right;
+}
+
+.xm-bg{
+    width: 1170px;
+    height: 80px;
+    background: #fff;
+    position: relative;
+}
+.xm-bg .xm1{
+    width: 390px;
+    height: 80px;
+    padding-top: 2px;
+    float: left;
+}
+.xm-bg .xm2{
+    width: 390px;
+    height: 80px;
+    padding-top: 2px;
+    float: left;
+}
+.xm-bg .xm3{
+    width: 390px;
+    height: 80px;
+    padding-top: 2px;
+    float: left;
+}
+#body{
+    height:600px;
+}
+
+/*页面2样式*/
+.page2{
+    height: 550px;
+}
+.page2 .text{
+    background: deepskyblue;
+    width: 200px;
+    height: 50px;
+    text-align: center;
+    margin-top: -10px;
+    float: left;
+}
+.page2 .text span{
+    font-size: 18px;
+    color: white;
+    line-height: 50px;
+
+}
+.page2 #myTabContent{
+    height: 400px;
+    float: left;
+
+}
+.page2 #myTabContent input{
+    width: 800px;
+    height: 50px;
+}
+.page2 #myTabContent button{
+    margin-left: 150px;
+    font-size: 18px;
+    height: 50px;
+    width: 150px;
+}
+.page2 #myTabContent a{
+    color: black;
+    text-decoration: none;
+}
+.page2 #myTabContent table{
+    height: 400px;
+    font-size: 16px;
+}
+.page2 #myTabContent td{
+    height:40px;
+    line-height: 40px;
+
+}
+.page2 #myTabContent a:hover{
+    color: #0f66bd;
+}
+
+
+.fy{
+    text-align: center;
+    margin-top: 30px;
+}
+/*页面3样式*/
+.page3{
+    height: 400px;
+
+}
+.page3 .item{
+    height:400px;
+    width: 800px;
+}
+.body3{
+    height:320px;
+}
+.zs{
+    padding-top: 15px;
+    background: #eeeeee;
+}
+.zs span{
+    float: right;
+}
+.zs p{
+    font-size: 20px;
+    color: black;
+    text-align: center;
+}
+.zs li{
+    font-size: 16px;
+    padding-top: 15px;
+}
+.zs li a{
+    color: black;
+    text-decoration: none;
+}
+
+.zc span{
+    float: right;
+
+}
+.zc p{
+    padding-top: 15px;
+    font-size: 20px;
+    color: red;
+    text-align: center;
+}
+.zc li{
+    font-size: 16px;
+    padding-top: 15px;
+    list-style:none ;
+}
+.zc li a{
+    color: black;
+    text-decoration: none;
+}
+.three{
+    text-align: center;
+}
+.three span{
+    font-size: 20px;
+    color: red;
+ }
+.three .li-1{
+    margin-top: 15px;
+    width: 100%;
+    height: 80px;
+    background: lightskyblue;
+    line-height: 80px;
+    text-align: center;
+}
+.li-1 a{
+    font-size: 16px;
+    color:white ;
+    text-decoration: none;
+}
+/*页面4样式*/
+.sp{
+    text-align: center;
+    font-size: 20px;
+    background: lightskyblue;
+}
+/*页面5样式*/
+.main{
+    height: 1050px;
+    border: 1px solid #eeeeee;
+
+}
+.gs{
+    margin-top: 10px;
+    text-align: center;
+    font-size: 20px;
+}
+.many li{
+    line-height: 40px;
+    height: 40px;
+    font-size: 14px;
+    padding-bottom: 20px;
+    list-style: none;
+    border-bottom: 2px solid #eeeeee;
+}
+.many a{
+    color: black;
+    text-decoration: none;
+}
+.many a:hover{
+    color: #0f66bd;
+}
+.time{
+    margin-right: 10px;
+    float: right;
+}
+/*页面6样式*/
+.common_art_all{
+    width:1200px;
+    padding:30px;
+    margin-top:20px;
+}
+.big-title{
+    height: 50px;
+    line-height: 50px;
+    font-size: 23px;
+    color: #0059c1;
+    margin-bottom: 20px
+}
+.big-title img{
+    float:left;
+}
+.big-title span{
+    float:left;
+    display:inline-block;
+    width:1077px;
+    border-bottom: 2px solid #0059c1;
+    margin-left:10px;
+}
+.text{
+    line-height:26px;
+    font-size:17px;
+    color:#333;
+    text-align: center;
+    margin:20px auto;
+}
+.fm input{
+    height: 40px;
+    width: 300px;
+}
+.fm select{
+    height: 40px;
+    width: 300px;
+}
+.fm textarea{
+    width: 500px;
+    height: 100px;
+}
+/*页面7样式*/
+.table7{
+    height: 500px;
+    font-size: 20px;
+    border: 1px solid #eeeeee;
+}
+.table7 a{
+    text-decoration: none;
+    color: black;
+    height: 50px;
+    line-height: 50px;
+}
+.table7 a:hover{
+    color: #0f66bd;
+
+}
+.table7 span{
+    text-align: center;
+    height: 50px;
+    line-height: 50px;
+
+}
+
+
+
+
+
+
+#main{
+    margin-top: 50px;
+}
+.drop{
+    width: 1160px;
+    height: 50px;
+    background: #b8cfdf;
+}
+.drop #span1{
+    float: left;
+    font-size: 20px;
+    color: dodgerblue;
+    margin-left: 100px;
+    line-height: 50px;
+}
+.drop .dropdown{
+    float: right;
+    margin-top: 10px;
+    margin-right: 100px;
+}
+.drop .dropdown button{
+    width: 150px;
+}
+.mid-01{
+    height: 600px;
+}
+.mid{
+    height:250px;
+    text-align: center;
+    border: #eeeeee solid 1px;
+    margin-top: 20px;
+}
+.mid-01 .title-01{
+    text-align: center;
+    font-size: 18px;
+    height: 50px;
+    line-height: 50px;
+    margin-top: 20px;
+    background:#b8cfdf ;
+}
+.mid .title1{
+    text-align: center;
+    font-size: 18px;
+    height: 50px;
+    line-height: 50px;
+    margin-bottom: 20px;
+    background:#b8cfdf ;
+}
+.mid span{
+   color: red;
+}
+.mid2{
+    height:300px;
+    text-align: center;
+    border: #eeeeee solid 1px;
+}
+.mid2 .title2{
+    text-align: center;
+    font-size: 18px;
+    height: 50px;
+    line-height: 50px;
+    background:#b8cfdf ;
+}
+.mid3{
+    margin-top: 20px;
+
+}
+.mid3 .title3{
+    text-align: center;
+    font-size: 18px;
+    height: 50px;
+    line-height: 50px;
+    background:#b8cfdf ;
+}
+.foot{
+    background: #061325;
+    width: 100%;
+    height: 100px;
+    text-align: center;
+}
+.foot-p{
+    margin-top: 20px;
+}
+.foot-p p{
+    color: white;
+}
+
+
+
+
+

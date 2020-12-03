@@ -1,0 +1,644 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dao.ProjectMapper" >
+  <resultMap id="BaseResultMap" type="com.entity.Project" >
+    <result column="projectid" property="projectid" jdbcType="INTEGER" />
+    <result column="countryid" property="countryid" jdbcType="VARCHAR" />
+    <result column="placeid" property="placeid" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="property" property="property" jdbcType="VARCHAR" />
+    <result column="country" property="country" jdbcType="VARCHAR" />
+    <result column="institution" property="institution" jdbcType="VARCHAR" />
+    <result column="site" property="site" jdbcType="VARCHAR" />
+    <result column="sitedetail" property="sitedetail" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="gbindustry" property="gbindustry" jdbcType="VARCHAR" />
+    <result column="industry" property="industry" jdbcType="VARCHAR" />
+    <result column="investment" property="investment" jdbcType="VARCHAR" />
+    <result column="startyear" property="startyear" jdbcType="TIMESTAMP" />
+    <result column="endyear" property="endyear" jdbcType="TIMESTAMP" />
+    <result column="buildscale" property="buildscale" jdbcType="VARCHAR" />
+    <result column="quantifyscale" property="quantifyscale" jdbcType="VARCHAR" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="dutyperson" property="dutyperson" jdbcType="VARCHAR" />
+    <result column="dutypersontel" property="dutypersontel" jdbcType="VARCHAR" />
+    <result column="conperson" property="conperson" jdbcType="VARCHAR" />
+    <result column="conpersontel" property="conpersontel" jdbcType="VARCHAR" />
+    <result column="fundtype" property="fundtype" jdbcType="VARCHAR" />
+    <result column="allfund" property="allfund" jdbcType="VARCHAR" />
+    <result column="xfund" property="xfund" jdbcType="VARCHAR" />
+    <result column="finvestment" property="finvestment" jdbcType="VARCHAR" />
+    <result column="sfund" property="sfund" jdbcType="VARCHAR" />
+    <result column="reviewthing" property="reviewthing" jdbcType="VARCHAR" />
+    <result column="reviewinstitution" property="reviewinstitution" jdbcType="VARCHAR" />
+    <result column="reviewtime" property="reviewtime" jdbcType="TIMESTAMP" />
+    <result column="reviewname" property="reviewname" jdbcType="VARCHAR" />
+    <result column="reviewnumber" property="reviewnumber" jdbcType="VARCHAR" />
+    <result column="reviewstatus" property="reviewstatus" jdbcType="VARCHAR" />
+    <result column="sendstatus" property="sendstatus" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    projectid, countryid, placeid, name, type, property, country, institution, site, 
+    sitedetail, address, gbindustry, industry, investment, startyear, endyear, buildscale, 
+    quantifyscale, content, dutyperson, dutypersontel, conperson, conpersontel, fundtype, 
+    allfund, xfund, finvestment, sfund, reviewthing, reviewinstitution, reviewtime, reviewname, 
+    reviewnumber, reviewstatus, sendstatus
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.entity.ProjectExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from zf_project
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.entity.ProjectExample" >
+    delete from zf_project
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.entity.Project" >
+    insert into zf_project (projectid, countryid, placeid, 
+      name, type, property, 
+      country, institution, site, 
+      sitedetail, address, gbindustry, 
+      industry, investment, startyear, 
+      endyear, buildscale, quantifyscale, 
+      content, dutyperson, dutypersontel, 
+      conperson, conpersontel, fundtype, 
+      allfund, xfund, finvestment, 
+      sfund, reviewthing, reviewinstitution, 
+      reviewtime, reviewname, reviewnumber, 
+      reviewstatus, sendstatus)
+    values (#{projectid,jdbcType=INTEGER}, #{countryid,jdbcType=VARCHAR}, #{placeid,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{property,jdbcType=VARCHAR}, 
+      #{country,jdbcType=VARCHAR}, #{institution,jdbcType=VARCHAR}, #{site,jdbcType=VARCHAR}, 
+      #{sitedetail,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{gbindustry,jdbcType=VARCHAR}, 
+      #{industry,jdbcType=VARCHAR}, #{investment,jdbcType=VARCHAR}, #{startyear,jdbcType=TIMESTAMP}, 
+      #{endyear,jdbcType=TIMESTAMP}, #{buildscale,jdbcType=VARCHAR}, #{quantifyscale,jdbcType=VARCHAR}, 
+      #{content,jdbcType=VARCHAR}, #{dutyperson,jdbcType=VARCHAR}, #{dutypersontel,jdbcType=VARCHAR}, 
+      #{conperson,jdbcType=VARCHAR}, #{conpersontel,jdbcType=VARCHAR}, #{fundtype,jdbcType=VARCHAR}, 
+      #{allfund,jdbcType=VARCHAR}, #{xfund,jdbcType=VARCHAR}, #{finvestment,jdbcType=VARCHAR}, 
+      #{sfund,jdbcType=VARCHAR}, #{reviewthing,jdbcType=VARCHAR}, #{reviewinstitution,jdbcType=VARCHAR}, 
+      #{reviewtime,jdbcType=TIMESTAMP}, #{reviewname,jdbcType=VARCHAR}, #{reviewnumber,jdbcType=VARCHAR}, 
+      #{reviewstatus,jdbcType=VARCHAR}, #{sendstatus,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.entity.Project" >
+    insert into zf_project
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="projectid != null" >
+        projectid,
+      </if>
+      <if test="countryid != null" >
+        countryid,
+      </if>
+      <if test="placeid != null" >
+        placeid,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="property != null" >
+        property,
+      </if>
+      <if test="country != null" >
+        country,
+      </if>
+      <if test="institution != null" >
+        institution,
+      </if>
+      <if test="site != null" >
+        site,
+      </if>
+      <if test="sitedetail != null" >
+        sitedetail,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="gbindustry != null" >
+        gbindustry,
+      </if>
+      <if test="industry != null" >
+        industry,
+      </if>
+      <if test="investment != null" >
+        investment,
+      </if>
+      <if test="startyear != null" >
+        startyear,
+      </if>
+      <if test="endyear != null" >
+        endyear,
+      </if>
+      <if test="buildscale != null" >
+        buildscale,
+      </if>
+      <if test="quantifyscale != null" >
+        quantifyscale,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+      <if test="dutyperson != null" >
+        dutyperson,
+      </if>
+      <if test="dutypersontel != null" >
+        dutypersontel,
+      </if>
+      <if test="conperson != null" >
+        conperson,
+      </if>
+      <if test="conpersontel != null" >
+        conpersontel,
+      </if>
+      <if test="fundtype != null" >
+        fundtype,
+      </if>
+      <if test="allfund != null" >
+        allfund,
+      </if>
+      <if test="xfund != null" >
+        xfund,
+      </if>
+      <if test="finvestment != null" >
+        finvestment,
+      </if>
+      <if test="sfund != null" >
+        sfund,
+      </if>
+      <if test="reviewthing != null" >
+        reviewthing,
+      </if>
+      <if test="reviewinstitution != null" >
+        reviewinstitution,
+      </if>
+      <if test="reviewtime != null" >
+        reviewtime,
+      </if>
+      <if test="reviewname != null" >
+        reviewname,
+      </if>
+      <if test="reviewnumber != null" >
+        reviewnumber,
+      </if>
+      <if test="reviewstatus != null" >
+        reviewstatus,
+      </if>
+      <if test="sendstatus != null" >
+        sendstatus,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="projectid != null" >
+        #{projectid,jdbcType=INTEGER},
+      </if>
+      <if test="countryid != null" >
+        #{countryid,jdbcType=VARCHAR},
+      </if>
+      <if test="placeid != null" >
+        #{placeid,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="property != null" >
+        #{property,jdbcType=VARCHAR},
+      </if>
+      <if test="country != null" >
+        #{country,jdbcType=VARCHAR},
+      </if>
+      <if test="institution != null" >
+        #{institution,jdbcType=VARCHAR},
+      </if>
+      <if test="site != null" >
+        #{site,jdbcType=VARCHAR},
+      </if>
+      <if test="sitedetail != null" >
+        #{sitedetail,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="gbindustry != null" >
+        #{gbindustry,jdbcType=VARCHAR},
+      </if>
+      <if test="industry != null" >
+        #{industry,jdbcType=VARCHAR},
+      </if>
+      <if test="investment != null" >
+        #{investment,jdbcType=VARCHAR},
+      </if>
+      <if test="startyear != null" >
+        #{startyear,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endyear != null" >
+        #{endyear,jdbcType=TIMESTAMP},
+      </if>
+      <if test="buildscale != null" >
+        #{buildscale,jdbcType=VARCHAR},
+      </if>
+      <if test="quantifyscale != null" >
+        #{quantifyscale,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="dutyperson != null" >
+        #{dutyperson,jdbcType=VARCHAR},
+      </if>
+      <if test="dutypersontel != null" >
+        #{dutypersontel,jdbcType=VARCHAR},
+      </if>
+      <if test="conperson != null" >
+        #{conperson,jdbcType=VARCHAR},
+      </if>
+      <if test="conpersontel != null" >
+        #{conpersontel,jdbcType=VARCHAR},
+      </if>
+      <if test="fundtype != null" >
+        #{fundtype,jdbcType=VARCHAR},
+      </if>
+      <if test="allfund != null" >
+        #{allfund,jdbcType=VARCHAR},
+      </if>
+      <if test="xfund != null" >
+        #{xfund,jdbcType=VARCHAR},
+      </if>
+      <if test="finvestment != null" >
+        #{finvestment,jdbcType=VARCHAR},
+      </if>
+      <if test="sfund != null" >
+        #{sfund,jdbcType=VARCHAR},
+      </if>
+      <if test="reviewthing != null" >
+        #{reviewthing,jdbcType=VARCHAR},
+      </if>
+      <if test="reviewinstitution != null" >
+        #{reviewinstitution,jdbcType=VARCHAR},
+      </if>
+      <if test="reviewtime != null" >
+        #{reviewtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reviewname != null" >
+        #{reviewname,jdbcType=VARCHAR},
+      </if>
+      <if test="reviewnumber != null" >
+        #{reviewnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="reviewstatus != null" >
+        #{reviewstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="sendstatus != null" >
+        #{sendstatus,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.entity.ProjectExample" resultType="java.lang.Integer" >
+    select count(*) from zf_project
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update zf_project
+    <set >
+      <if test="record.projectid != null" >
+        projectid = #{record.projectid,jdbcType=INTEGER},
+      </if>
+      <if test="record.countryid != null" >
+        countryid = #{record.countryid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.placeid != null" >
+        placeid = #{record.placeid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.type != null" >
+        type = #{record.type,jdbcType=VARCHAR},
+      </if>
+      <if test="record.property != null" >
+        property = #{record.property,jdbcType=VARCHAR},
+      </if>
+      <if test="record.country != null" >
+        country = #{record.country,jdbcType=VARCHAR},
+      </if>
+      <if test="record.institution != null" >
+        institution = #{record.institution,jdbcType=VARCHAR},
+      </if>
+      <if test="record.site != null" >
+        site = #{record.site,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sitedetail != null" >
+        sitedetail = #{record.sitedetail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.address != null" >
+        address = #{record.address,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gbindustry != null" >
+        gbindustry = #{record.gbindustry,jdbcType=VARCHAR},
+      </if>
+      <if test="record.industry != null" >
+        industry = #{record.industry,jdbcType=VARCHAR},
+      </if>
+      <if test="record.investment != null" >
+        investment = #{record.investment,jdbcType=VARCHAR},
+      </if>
+      <if test="record.startyear != null" >
+        startyear = #{record.startyear,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.endyear != null" >
+        endyear = #{record.endyear,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.buildscale != null" >
+        buildscale = #{record.buildscale,jdbcType=VARCHAR},
+      </if>
+      <if test="record.quantifyscale != null" >
+        quantifyscale = #{record.quantifyscale,jdbcType=VARCHAR},
+      </if>
+      <if test="record.content != null" >
+        content = #{record.content,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dutyperson != null" >
+        dutyperson = #{record.dutyperson,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dutypersontel != null" >
+        dutypersontel = #{record.dutypersontel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.conperson != null" >
+        conperson = #{record.conperson,jdbcType=VARCHAR},
+      </if>
+      <if test="record.conpersontel != null" >
+        conpersontel = #{record.conpersontel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fundtype != null" >
+        fundtype = #{record.fundtype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.allfund != null" >
+        allfund = #{record.allfund,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xfund != null" >
+        xfund = #{record.xfund,jdbcType=VARCHAR},
+      </if>
+      <if test="record.finvestment != null" >
+        finvestment = #{record.finvestment,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sfund != null" >
+        sfund = #{record.sfund,jdbcType=VARCHAR},
+      </if>
+      <if test="record.reviewthing != null" >
+        reviewthing = #{record.reviewthing,jdbcType=VARCHAR},
+      </if>
+      <if test="record.reviewinstitution != null" >
+        reviewinstitution = #{record.reviewinstitution,jdbcType=VARCHAR},
+      </if>
+      <if test="record.reviewtime != null" >
+        reviewtime = #{record.reviewtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.reviewname != null" >
+        reviewname = #{record.reviewname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.reviewnumber != null" >
+        reviewnumber = #{record.reviewnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.reviewstatus != null" >
+        reviewstatus = #{record.reviewstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sendstatus != null" >
+        sendstatus = #{record.sendstatus,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update zf_project
+    set projectid = #{record.projectid,jdbcType=INTEGER},
+      countryid = #{record.countryid,jdbcType=VARCHAR},
+      placeid = #{record.placeid,jdbcType=VARCHAR},
+      name = #{record.name,jdbcType=VARCHAR},
+      type = #{record.type,jdbcType=VARCHAR},
+      property = #{record.property,jdbcType=VARCHAR},
+      country = #{record.country,jdbcType=VARCHAR},
+      institution = #{record.institution,jdbcType=VARCHAR},
+      site = #{record.site,jdbcType=VARCHAR},
+      sitedetail = #{record.sitedetail,jdbcType=VARCHAR},
+      address = #{record.address,jdbcType=VARCHAR},
+      gbindustry = #{record.gbindustry,jdbcType=VARCHAR},
+      industry = #{record.industry,jdbcType=VARCHAR},
+      investment = #{record.investment,jdbcType=VARCHAR},
+      startyear = #{record.startyear,jdbcType=TIMESTAMP},
+      endyear = #{record.endyear,jdbcType=TIMESTAMP},
+      buildscale = #{record.buildscale,jdbcType=VARCHAR},
+      quantifyscale = #{record.quantifyscale,jdbcType=VARCHAR},
+      content = #{record.content,jdbcType=VARCHAR},
+      dutyperson = #{record.dutyperson,jdbcType=VARCHAR},
+      dutypersontel = #{record.dutypersontel,jdbcType=VARCHAR},
+      conperson = #{record.conperson,jdbcType=VARCHAR},
+      conpersontel = #{record.conpersontel,jdbcType=VARCHAR},
+      fundtype = #{record.fundtype,jdbcType=VARCHAR},
+      allfund = #{record.allfund,jdbcType=VARCHAR},
+      xfund = #{record.xfund,jdbcType=VARCHAR},
+      finvestment = #{record.finvestment,jdbcType=VARCHAR},
+      sfund = #{record.sfund,jdbcType=VARCHAR},
+      reviewthing = #{record.reviewthing,jdbcType=VARCHAR},
+      reviewinstitution = #{record.reviewinstitution,jdbcType=VARCHAR},
+      reviewtime = #{record.reviewtime,jdbcType=TIMESTAMP},
+      reviewname = #{record.reviewname,jdbcType=VARCHAR},
+      reviewnumber = #{record.reviewnumber,jdbcType=VARCHAR},
+      reviewstatus = #{record.reviewstatus,jdbcType=VARCHAR},
+      sendstatus = #{record.sendstatus,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from zf_project
+    where projectid = #{projectid,jdbcType=INTEGER}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from zf_project
+    where projectid = #{projectid,jdbcType=INTEGER}
+  </delete>
+
+    <update id="updateByPrimaryKey" parameterType="com.entity.Project">
+    update zf_project
+    set  countryid = #{countryid,jdbcType=VARCHAR},
+      placeid = #{placeid,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      property = #{property,jdbcType=VARCHAR},
+      country = #{country,jdbcType=VARCHAR},
+      institution = #{institution,jdbcType=VARCHAR},
+      site = #{site,jdbcType=VARCHAR},
+      sitedetail = #{sitedetail,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      gbindustry = #{gbindustry,jdbcType=VARCHAR},
+      industry = #{industry,jdbcType=VARCHAR},
+      investment = #{investment,jdbcType=VARCHAR},
+      startyear = #{startyear,jdbcType=TIMESTAMP},
+      endyear = #{endyear,jdbcType=TIMESTAMP},
+      buildscale = #{buildscale,jdbcType=VARCHAR},
+      quantifyscale = #{quantifyscale,jdbcType=VARCHAR},
+      content = #{content,jdbcType=VARCHAR},
+      dutyperson = #{dutyperson,jdbcType=VARCHAR},
+      dutypersontel = #{dutypersontel,jdbcType=VARCHAR},
+      conperson = #{conperson,jdbcType=VARCHAR},
+      conpersontel = #{conpersontel,jdbcType=VARCHAR},
+      fundtype = #{fundtype,jdbcType=VARCHAR},
+      allfund = #{allfund,jdbcType=VARCHAR},
+      xfund = #{xfund,jdbcType=VARCHAR},
+      finvestment = #{finvestment,jdbcType=VARCHAR},
+      sfund = #{sfund,jdbcType=VARCHAR},
+      reviewthing = #{reviewthing,jdbcType=VARCHAR},
+      reviewinstitution = #{reviewinstitution,jdbcType=VARCHAR},
+      reviewtime = #{reviewtime,jdbcType=TIMESTAMP},
+      reviewname = #{reviewname,jdbcType=VARCHAR},
+      reviewnumber = #{reviewnumber,jdbcType=VARCHAR},
+      reviewstatus = #{reviewstatus,jdbcType=VARCHAR},
+      sendstatus = #{sendstatus,jdbcType=VARCHAR}
+    where projectid = #{projectid,jdbcType=INTEGER}
+  </update>
+    <select id="listByProperty"  resultMap="BaseResultMap">
+        select * from zf_project where property like "%"#{property}"%" and sendstatus="待上报"
+    </select>
+
+    <select id="listByType"  resultMap="BaseResultMap">
+        select * from zf_project where type like "%"#{type}"%" and sendstatus="待上报"
+    </select>
+  <select id="listBysendType"  resultMap="BaseResultMap">
+        select * from zf_project where type like "%"#{type}"%" and sendstatus="已上报"
+    </select>
+  <select id="listBySite"  resultMap="BaseResultMap">
+    select * from zf_project where type like "%"#{site}"%" and sendstatus="已上报"
+  </select>
+    <select id="listByName"  resultMap="BaseResultMap">
+        select * from zf_project where name like "%"#{name}"%" and sendstatus="待上报"
+    </select>
+  <select id="listBysendName"  resultMap="BaseResultMap">
+        select * from zf_project where name like "%"#{name}"%" and sendstatus="已上报"
+    </select>
+  <select id="selectByName"  resultType="com.entity.Project">
+    select * from zf_project where name = #{name,jdbcType=VARCHAR}
+  </select>
+    <select id="findByTypeandName"  resultMap="BaseResultMap">
+	select * from zf_project where name like "%"#{arg0}"%" and type like "%"#{arg1}"%" and sendstatus="待上报"
+    </select>
+  <select id="findBysendTypeandName"  resultMap="BaseResultMap">
+	select * from zf_project where name like "%"#{arg0}"%" and type like "%"#{arg1}"%" and sendstatus="已上报"
+    </select>
+    <select id="findBySiteandName"  resultMap="BaseResultMap">
+	select * from zf_project where name like "%"#{arg0}"%" and site like "%"#{arg1}"%"  and sendstatus="已上报"
+    </select>
+  <select id="findByTypeandSite"  resultMap="BaseResultMap">
+	select * from zf_project where type like "%"#{arg0}"%" and site like "%"#{arg1}"%"  and sendstatus="已上报"
+    </select>
+    <select id="findByTypeandProperty"  resultMap="BaseResultMap">
+	select * from zf_project where type like "%"#{arg0}"%" and property like "%"#{arg1}"%" and sendstatus="待上报"
+    </select>
+    <select id="findByNameandProperty"  resultMap="BaseResultMap">
+	select * from zf_project where name like "%"#{arg0}"%" and property like "%"#{arg1}"%" and sendstatus="待上报"
+    </select>
+  <select id="findByNameandSendstatus"  resultMap="BaseResultMap">
+	select * from zf_project where name like "%"#{arg0}"%" and  sendstatus like "%"#{arg1}"%"
+    </select>
+    <select id="findByNameTypeandProperty"  resultMap="BaseResultMap">
+	select *  from zf_project where name like "%"#{arg0}"%" and type like "%"#{arg1}"%" and property like "%"#{arg2}"%" and sendstatus="待上报"
+    </select>
+    <select id="findByNameTypeandSite"  resultMap="BaseResultMap">
+	select *  from zf_project where name like "%"#{arg0}"%" and type like "%"#{arg1}"%" and site like "%"#{arg2}"%"  and sendstatus="已上报"
+    </select>
+    <select id="findAll" resultType="com.entity.Project">
+        select
+        <include refid="Base_Column_List" />
+        from zf_project
+    </select>
+    <select id="findBystatus" resultMap="BaseResultMap">
+      select
+      <include refid="Base_Column_List" />
+      from zf_project where sendstatus="待上报"
+    </select>
+  <select id="findBysendstatus" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from zf_project where sendstatus=#{sendstatus,jdbcType=VARCHAR}
+  </select>
+</mapper>

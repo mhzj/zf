@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dao.ProjectsendMapper" >
+    <resultMap id="BaseResultMap" type="com.entity.Projectsend" >
+        <result column="id" property="id" jdbcType="INTEGER" />
+        <result column="projectid" property="projectid" jdbcType="INTEGER" />
+        <result column="librarytype" property="librarytype" jdbcType="VARCHAR" />
+        <result column="fromproject" property="fromproject" jdbcType="VARCHAR" />
+        <result column="rate" property="rate" jdbcType="VARCHAR" />
+        <result column="saverate" property="saverate" jdbcType="VARCHAR" />
+        <result column="status" property="status" jdbcType="VARCHAR" />
+        <result column="savesite" property="savesite" jdbcType="VARCHAR" />
+        <result column="savetime" property="savetime" jdbcType="TIMESTAMP" />
+        <result column="fromsite" property="fromsite" jdbcType="VARCHAR" />
+        <result column="receivesite" property="receivesite" jdbcType="VARCHAR" />
+        <result column="projecttype" property="projecttype" jdbcType="VARCHAR" />
+        <result column="chubeitime" property="chubeitime" jdbcType="TIMESTAMP" />
+        <result column="projectname" property="projectname" jdbcType="VARCHAR" />
+        <result column="site" property="site" jdbcType="VARCHAR" />
+        <result column="gbindustry" property="gbindustry" jdbcType="VARCHAR" />
+        <result column="industry" property="industry" jdbcType="VARCHAR" />
+        <result column="investment" property="investment" jdbcType="VARCHAR" />
+        <result column="starttime" property="starttime" jdbcType="TIMESTAMP" />
+        <result column="endtime" property="endtime" jdbcType="TIMESTAMP" />
+    </resultMap>
+    <sql id="Example_Where_Clause" >
+        <where >
+            <foreach collection="oredCriteria" item="criteria" separator="or" >
+                <if test="criteria.valid" >
+                    <trim prefix="(" suffix=")" prefixOverrides="and" >
+                        <foreach collection="criteria.criteria" item="criterion" >
+                            <choose >
+                                <when test="criterion.noValue" >
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue" >
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue" >
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue" >
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause" >
+        <where >
+            <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+                <if test="criteria.valid" >
+                    <trim prefix="(" suffix=")" prefixOverrides="and" >
+                        <foreach collection="criteria.criteria" item="criterion" >
+                            <choose >
+                                <when test="criterion.noValue" >
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue" >
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue" >
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue" >
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Base_Column_List" >
+    id, projectid, librarytype, fromproject, rate, saverate, status, savesite, savetime,
+    fromsite, receivesite, projecttype, chubeitime, projectname, site, gbindustry, industry,
+    investment, starttime, endtime
+  </sql>
+    <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.entity.ProjectsendExample" >
+        select
+        <if test="distinct" >
+            distinct
+        </if>
+        <include refid="Base_Column_List" />
+        from zf_projectsend
+        <if test="_parameter != null" >
+            <include refid="Example_Where_Clause" />
+        </if>
+        <if test="orderByClause != null" >
+            order by ${orderByClause}
+        </if>
+    </select>
+    <delete id="deleteByExample" parameterType="com.entity.ProjectsendExample" >
+        delete from zf_projectsend
+        <if test="_parameter != null" >
+            <include refid="Example_Where_Clause" />
+        </if>
+    </delete>
+    <insert id="insert" parameterType="com.entity.Projectsend" >
+    insert into zf_projectsend (id, projectid, librarytype,
+      fromproject, rate, saverate,
+      status, savesite, savetime,
+      fromsite, receivesite, projecttype,
+      chubeitime, projectname, site,
+      gbindustry, industry, investment,
+      starttime, endtime)
+    values (#{id,jdbcType=INTEGER}, #{projectid,jdbcType=INTEGER}, #{librarytype,jdbcType=VARCHAR},
+      #{fromproject,jdbcType=VARCHAR}, #{rate,jdbcType=VARCHAR}, #{saverate,jdbcType=VARCHAR},
+      #{status,jdbcType=VARCHAR}, #{savesite,jdbcType=VARCHAR}, #{savetime,jdbcType=TIMESTAMP},
+      #{fromsite,jdbcType=VARCHAR}, #{receivesite,jdbcType=VARCHAR}, #{projecttype,jdbcType=VARCHAR},
+      #{chubeitime,jdbcType=TIMESTAMP}, #{projectname,jdbcType=VARCHAR}, #{site,jdbcType=VARCHAR},
+      #{gbindustry,jdbcType=VARCHAR}, #{industry,jdbcType=VARCHAR}, #{investment,jdbcType=VARCHAR},
+      #{starttime,jdbcType=TIMESTAMP}, #{endtime,jdbcType=TIMESTAMP})
+  </insert>
+    <insert id="insertSelective" parameterType="com.entity.Projectsend" >
+        insert into zf_projectsend
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                id,
+            </if>
+            <if test="projectid != null" >
+                projectid,
+            </if>
+            <if test="librarytype != null" >
+                librarytype,
+            </if>
+            <if test="fromproject != null" >
+                fromproject,
+            </if>
+            <if test="rate != null" >
+                rate,
+            </if>
+            <if test="saverate != null" >
+                saverate,
+            </if>
+            <if test="status != null" >
+                status,
+            </if>
+            <if test="savesite != null" >
+                savesite,
+            </if>
+            <if test="savetime != null" >
+                savetime,
+            </if>
+            <if test="fromsite != null" >
+                fromsite,
+            </if>
+            <if test="receivesite != null" >
+                receivesite,
+            </if>
+            <if test="projecttype != null" >
+                projecttype,
+            </if>
+            <if test="chubeitime != null" >
+                chubeitime,
+            </if>
+            <if test="projectname != null" >
+                projectname,
+            </if>
+            <if test="site != null" >
+                site,
+            </if>
+            <if test="gbindustry != null" >
+                gbindustry,
+            </if>
+            <if test="industry != null" >
+                industry,
+            </if>
+            <if test="investment != null" >
+                investment,
+            </if>
+            <if test="starttime != null" >
+                starttime,
+            </if>
+            <if test="endtime != null" >
+                endtime,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="projectid != null" >
+                #{projectid,jdbcType=INTEGER},
+            </if>
+            <if test="librarytype != null" >
+                #{librarytype,jdbcType=VARCHAR},
+            </if>
+            <if test="fromproject != null" >
+                #{fromproject,jdbcType=VARCHAR},
+            </if>
+            <if test="rate != null" >
+                #{rate,jdbcType=VARCHAR},
+            </if>
+            <if test="saverate != null" >
+                #{saverate,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null" >
+                #{status,jdbcType=VARCHAR},
+            </if>
+            <if test="savesite != null" >
+                #{savesite,jdbcType=VARCHAR},
+            </if>
+            <if test="savetime != null" >
+                #{savetime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="fromsite != null" >
+                #{fromsite,jdbcType=VARCHAR},
+            </if>
+            <if test="receivesite != null" >
+                #{receivesite,jdbcType=VARCHAR},
+            </if>
+            <if test="projecttype != null" >
+                #{projecttype,jdbcType=VARCHAR},
+            </if>
+            <if test="chubeitime != null" >
+                #{chubeitime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="projectname != null" >
+                #{projectname,jdbcType=VARCHAR},
+            </if>
+            <if test="site != null" >
+                #{site,jdbcType=VARCHAR},
+            </if>
+            <if test="gbindustry != null" >
+                #{gbindustry,jdbcType=VARCHAR},
+            </if>
+            <if test="industry != null" >
+                #{industry,jdbcType=VARCHAR},
+            </if>
+            <if test="investment != null" >
+                #{investment,jdbcType=VARCHAR},
+            </if>
+            <if test="starttime != null" >
+                #{starttime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="endtime != null" >
+                #{endtime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <select id="countByExample" parameterType="com.entity.ProjectsendExample" resultType="java.lang.Integer" >
+        select count(*) from zf_projectsend
+        <if test="_parameter != null" >
+            <include refid="Example_Where_Clause" />
+        </if>
+    </select>
+    <update id="updateByExampleSelective" parameterType="map" >
+        update zf_projectsend
+        <set >
+            <if test="record.id != null" >
+                id = #{record.id,jdbcType=INTEGER},
+            </if>
+            <if test="record.projectid != null" >
+                projectid = #{record.projectid,jdbcType=INTEGER},
+            </if>
+            <if test="record.librarytype != null" >
+                librarytype = #{record.librarytype,jdbcType=VARCHAR},
+            </if>
+            <if test="record.fromproject != null" >
+                fromproject = #{record.fromproject,jdbcType=VARCHAR},
+            </if>
+            <if test="record.rate != null" >
+                rate = #{record.rate,jdbcType=VARCHAR},
+            </if>
+            <if test="record.saverate != null" >
+                saverate = #{record.saverate,jdbcType=VARCHAR},
+            </if>
+            <if test="record.status != null" >
+                status = #{record.status,jdbcType=VARCHAR},
+            </if>
+            <if test="record.savesite != null" >
+                savesite = #{record.savesite,jdbcType=VARCHAR},
+            </if>
+            <if test="record.savetime != null" >
+                savetime = #{record.savetime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.fromsite != null" >
+                fromsite = #{record.fromsite,jdbcType=VARCHAR},
+            </if>
+            <if test="record.receivesite != null" >
+                receivesite = #{record.receivesite,jdbcType=VARCHAR},
+            </if>
+            <if test="record.projecttype != null" >
+                projecttype = #{record.projecttype,jdbcType=VARCHAR},
+            </if>
+            <if test="record.chubeitime != null" >
+                chubeitime = #{record.chubeitime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.projectname != null" >
+                projectname = #{record.projectname,jdbcType=VARCHAR},
+            </if>
+            <if test="record.site != null" >
+                site = #{record.site,jdbcType=VARCHAR},
+            </if>
+            <if test="record.gbindustry != null" >
+                gbindustry = #{record.gbindustry,jdbcType=VARCHAR},
+            </if>
+            <if test="record.industry != null" >
+                industry = #{record.industry,jdbcType=VARCHAR},
+            </if>
+            <if test="record.investment != null" >
+                investment = #{record.investment,jdbcType=VARCHAR},
+            </if>
+            <if test="record.starttime != null" >
+                starttime = #{record.starttime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.endtime != null" >
+                endtime = #{record.endtime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        <if test="_parameter != null" >
+            <include refid="Update_By_Example_Where_Clause" />
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map" >
+        update zf_projectsend
+        set id = #{record.id,jdbcType=INTEGER},
+        projectid = #{record.projectid,jdbcType=INTEGER},
+        librarytype = #{record.librarytype,jdbcType=VARCHAR},
+        fromproject = #{record.fromproject,jdbcType=VARCHAR},
+        rate = #{record.rate,jdbcType=VARCHAR},
+        saverate = #{record.saverate,jdbcType=VARCHAR},
+        status = #{record.status,jdbcType=VARCHAR},
+        savesite = #{record.savesite,jdbcType=VARCHAR},
+        savetime = #{record.savetime,jdbcType=TIMESTAMP},
+        fromsite = #{record.fromsite,jdbcType=VARCHAR},
+        receivesite = #{record.receivesite,jdbcType=VARCHAR},
+        projecttype = #{record.projecttype,jdbcType=VARCHAR},
+        chubeitime = #{record.chubeitime,jdbcType=TIMESTAMP},
+        projectname = #{record.projectname,jdbcType=VARCHAR},
+        site = #{record.site,jdbcType=VARCHAR},
+        gbindustry = #{record.gbindustry,jdbcType=VARCHAR},
+        industry = #{record.industry,jdbcType=VARCHAR},
+        investment = #{record.investment,jdbcType=VARCHAR},
+        starttime = #{record.starttime,jdbcType=TIMESTAMP},
+        endtime = #{record.endtime,jdbcType=TIMESTAMP}
+        <if test="_parameter != null" >
+            <include refid="Update_By_Example_Where_Clause" />
+        </if>
+    </update>
+    <select id="findAll" resultType="com.entity.Projectsend">
+        select
+        <include refid="Base_Column_List" />
+        from zf_projectsend
+    </select>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from zf_projectsend
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from zf_projectsend
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+    <select id="selectByprojectid" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from zf_projectsend
+        where projectid = #{projectid,jdbcType=INTEGER}
+    </select>
+
+    <update id="updateByPrimaryKey" parameterType="com.entity.Projectsend">
+    update zf_projectsend
+    set  projectid = #{projectid,jdbcType=INTEGER},
+      librarytype = #{librarytype,jdbcType=VARCHAR},
+      fromproject = #{fromproject,jdbcType=VARCHAR},
+      rate = #{rate,jdbcType=VARCHAR},
+      saverate = #{saverate,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      savesite = #{savesite,jdbcType=VARCHAR},
+      savetime = #{savetime,jdbcType=TIMESTAMP},
+      fromsite = #{fromsite,jdbcType=VARCHAR},
+      receivesite = #{receivesite,jdbcType=VARCHAR},
+      projecttype = #{projecttype,jdbcType=VARCHAR},
+      chubeitime = #{chubeitime,jdbcType=TIMESTAMP},
+      projectname = #{projectname,jdbcType=VARCHAR},
+      site = #{site,jdbcType=VARCHAR},
+      gbindustry = #{gbindustry,jdbcType=VARCHAR},
+      industry = #{industry,jdbcType=VARCHAR},
+      investment = #{investment,jdbcType=VARCHAR},
+      starttime = #{starttime,jdbcType=TIMESTAMP},
+      endtime = #{endtime,jdbcType=TIMESTAMP}
+   where id = #{id,jdbcType=INTEGER}
+  </update>
+
+    <select id="findBysaverate" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from zf_projectsend where  saverate = #{saverate,jdbcType=VARCHAR}
+    </select>
+    <select id="findBytype" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from zf_projectsend where  librarytype = #{librarytype,jdbcType=VARCHAR}  and  receivesite like "%"#{receivesite}"%"
+    </select>
+</mapper>

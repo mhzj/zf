@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dao.RollplanMapper" >
+  <resultMap id="BaseResultMap" type="com.entity.Rollplan" >
+    <result column="rollplanid" property="rollplanid" jdbcType="INTEGER" />
+    <result column="projectid" property="projectid" jdbcType="INTEGER" />
+    <result column="sendstatus" property="sendstatus" jdbcType="VARCHAR" />
+    <result column="projecttype" property="projecttype" jdbcType="VARCHAR" />
+    <result column="fromsite" property="fromsite" jdbcType="VARCHAR" />
+    <result column="receivesite" property="receivesite" jdbcType="VARCHAR" />
+    <result column="rate" property="rate" jdbcType="VARCHAR" />
+    <result column="projectname" property="projectname" jdbcType="VARCHAR" />
+    <result column="site" property="site" jdbcType="VARCHAR" />
+    <result column="industry" property="industry" jdbcType="VARCHAR" />
+    <result column="investment" property="investment" jdbcType="VARCHAR" />
+    <result column="starttime" property="starttime" jdbcType="TIMESTAMP" />
+    <result column="endtime" property="endtime" jdbcType="TIMESTAMP" />
+    <result column="plantime" property="plantime" jdbcType="TIMESTAMP" />
+    <result column="updatetime" property="updatetime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    rollplanid, projectid, sendstatus, projecttype, fromsite, receivesite, rate, projectname, 
+    site, industry, investment, starttime, endtime, plantime, updatetime
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.entity.RollplanExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from zf_rollplan
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.entity.RollplanExample" >
+    delete from zf_rollplan
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.entity.Rollplan" >
+    insert into zf_rollplan (rollplanid, projectid, sendstatus, 
+      projecttype, fromsite, receivesite, 
+      rate, projectname, site, 
+      industry, investment, starttime, 
+      endtime, plantime, updatetime
+      )
+    values (#{rollplanid,jdbcType=INTEGER}, #{projectid,jdbcType=INTEGER}, #{sendstatus,jdbcType=VARCHAR}, 
+      #{projecttype,jdbcType=VARCHAR}, #{fromsite,jdbcType=VARCHAR}, #{receivesite,jdbcType=VARCHAR}, 
+      #{rate,jdbcType=VARCHAR}, #{projectname,jdbcType=VARCHAR}, #{site,jdbcType=VARCHAR}, 
+      #{industry,jdbcType=VARCHAR}, #{investment,jdbcType=VARCHAR}, #{starttime,jdbcType=TIMESTAMP}, 
+      #{endtime,jdbcType=TIMESTAMP}, #{plantime,jdbcType=TIMESTAMP}, #{updatetime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.entity.Rollplan" >
+    insert into zf_rollplan
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="rollplanid != null" >
+        rollplanid,
+      </if>
+      <if test="projectid != null" >
+        projectid,
+      </if>
+      <if test="sendstatus != null" >
+        sendstatus,
+      </if>
+      <if test="projecttype != null" >
+        projecttype,
+      </if>
+      <if test="fromsite != null" >
+        fromsite,
+      </if>
+      <if test="receivesite != null" >
+        receivesite,
+      </if>
+      <if test="rate != null" >
+        rate,
+      </if>
+      <if test="projectname != null" >
+        projectname,
+      </if>
+      <if test="site != null" >
+        site,
+      </if>
+      <if test="industry != null" >
+        industry,
+      </if>
+      <if test="investment != null" >
+        investment,
+      </if>
+      <if test="starttime != null" >
+        starttime,
+      </if>
+      <if test="endtime != null" >
+        endtime,
+      </if>
+      <if test="plantime != null" >
+        plantime,
+      </if>
+      <if test="updatetime != null" >
+        updatetime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="rollplanid != null" >
+        #{rollplanid,jdbcType=INTEGER},
+      </if>
+      <if test="projectid != null" >
+        #{projectid,jdbcType=INTEGER},
+      </if>
+      <if test="sendstatus != null" >
+        #{sendstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="projecttype != null" >
+        #{projecttype,jdbcType=VARCHAR},
+      </if>
+      <if test="fromsite != null" >
+        #{fromsite,jdbcType=VARCHAR},
+      </if>
+      <if test="receivesite != null" >
+        #{receivesite,jdbcType=VARCHAR},
+      </if>
+      <if test="rate != null" >
+        #{rate,jdbcType=VARCHAR},
+      </if>
+      <if test="projectname != null" >
+        #{projectname,jdbcType=VARCHAR},
+      </if>
+      <if test="site != null" >
+        #{site,jdbcType=VARCHAR},
+      </if>
+      <if test="industry != null" >
+        #{industry,jdbcType=VARCHAR},
+      </if>
+      <if test="investment != null" >
+        #{investment,jdbcType=VARCHAR},
+      </if>
+      <if test="starttime != null" >
+        #{starttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endtime != null" >
+        #{endtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="plantime != null" >
+        #{plantime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.entity.RollplanExample" resultType="java.lang.Integer" >
+    select count(*) from zf_rollplan
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update zf_rollplan
+    <set >
+      <if test="record.rollplanid != null" >
+        rollplanid = #{record.rollplanid,jdbcType=INTEGER},
+      </if>
+      <if test="record.projectid != null" >
+        projectid = #{record.projectid,jdbcType=INTEGER},
+      </if>
+      <if test="record.sendstatus != null" >
+        sendstatus = #{record.sendstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.projecttype != null" >
+        projecttype = #{record.projecttype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fromsite != null" >
+        fromsite = #{record.fromsite,jdbcType=VARCHAR},
+      </if>
+      <if test="record.receivesite != null" >
+        receivesite = #{record.receivesite,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rate != null" >
+        rate = #{record.rate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.projectname != null" >
+        projectname = #{record.projectname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.site != null" >
+        site = #{record.site,jdbcType=VARCHAR},
+      </if>
+      <if test="record.industry != null" >
+        industry = #{record.industry,jdbcType=VARCHAR},
+      </if>
+      <if test="record.investment != null" >
+        investment = #{record.investment,jdbcType=VARCHAR},
+      </if>
+      <if test="record.starttime != null" >
+        starttime = #{record.starttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.endtime != null" >
+        endtime = #{record.endtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.plantime != null" >
+        plantime = #{record.plantime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updatetime != null" >
+        updatetime = #{record.updatetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update zf_rollplan
+    set rollplanid = #{record.rollplanid,jdbcType=INTEGER},
+      projectid = #{record.projectid,jdbcType=INTEGER},
+      sendstatus = #{record.sendstatus,jdbcType=VARCHAR},
+      projecttype = #{record.projecttype,jdbcType=VARCHAR},
+      fromsite = #{record.fromsite,jdbcType=VARCHAR},
+      receivesite = #{record.receivesite,jdbcType=VARCHAR},
+      rate = #{record.rate,jdbcType=VARCHAR},
+      projectname = #{record.projectname,jdbcType=VARCHAR},
+      site = #{record.site,jdbcType=VARCHAR},
+      industry = #{record.industry,jdbcType=VARCHAR},
+      investment = #{record.investment,jdbcType=VARCHAR},
+      starttime = #{record.starttime,jdbcType=TIMESTAMP},
+      endtime = #{record.endtime,jdbcType=TIMESTAMP},
+      plantime = #{record.plantime,jdbcType=TIMESTAMP},
+      updatetime = #{record.updatetime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <select id="findBysendstatusandreceivesite" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from zf_rollplan where sendstatus like "%"#{sendstatus}"%" and  receivesite  like "%"#{receivesite}"%"
+  </select>
+    <select id="findByprojectidandreceivesite" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from zf_rollplan where projectid = #{projectid,jdbcType=INTEGER} and receivesite  like "%"#{receivesite}"%"
+    </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from zf_rollplan
+    where rollplanid = #{rollplanid,jdbcType=INTEGER}
+  </select>
+
+  <update id="updateByPrimaryKey" parameterType="com.entity.Rollplan">
+    update zf_rollplan
+    set projectid = #{projectid,jdbcType=INTEGER},
+      sendstatus = #{sendstatus,jdbcType=VARCHAR},
+      projecttype = #{projecttype,jdbcType=VARCHAR},
+      fromsite = #{fromsite,jdbcType=VARCHAR},
+      receivesite = #{receivesite,jdbcType=VARCHAR},
+      rate = #{rate,jdbcType=VARCHAR},
+      projectname = #{projectname,jdbcType=VARCHAR},
+      site = #{site,jdbcType=VARCHAR},
+      industry = #{industry,jdbcType=VARCHAR},
+      investment = #{investment,jdbcType=VARCHAR},
+      starttime = #{starttime,jdbcType=TIMESTAMP},
+      endtime = #{endtime,jdbcType=TIMESTAMP},
+      plantime = #{plantime,jdbcType=TIMESTAMP},
+      updatetime = #{updatetime,jdbcType=TIMESTAMP}
+    where rollplanid = #{rollplanid,jdbcType=INTEGER}
+  </update>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from zf_rollplan
+    where rollplanid = #{rollplanid,jdbcType=INTEGER}
+  </delete>
+  <select id="findyearrollplanBysendstatus" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from zf_rollplan where receivesite like  "%"#{receivesite}"%" and (sendstatus='已报送' or sendstatus='仅纳入(未报送)')
+  </select>
+  <select id="findByprojectid" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from zf_rollplan where projectid = #{projectid} and  receivesite  like "%"#{receivesite}"%"
+  </select>
+</mapper>
