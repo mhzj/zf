@@ -15,6 +15,7 @@
 图C-2项目责任单位首页图
 
 项目责任单位项目管理包括填报区、已报区、总览，填报区包括新增、报送、批量删除等功能。填报区如下图C-3所示：
+
 ![Image text](https://github.com/mhzj/zf/blob/main/%E9%A1%B9%E7%9B%AE%E5%A1%AB%E6%8A%A5%E5%8C%BA%E7%95%8C%E9%9D%A2.png)
 
 图C-3项目填报区界面图
